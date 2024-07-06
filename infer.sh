@@ -4,9 +4,14 @@ wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alp
 nuscenes_dir=../datasets/nuscenes
 nuscenes_output=nuscenes_seg_grounded_sam_output
 
-echo "Please download sam_hq_vit_h.pth" # https://drive.google.com/file/d/1qobFYrI4eyIANfBSmYcGuWRaSIXfMOQ8/view?pli=1
-echo "Please download sam_hq_vit_h.pth" # https://drive.google.com/file/d/1qobFYrI4eyIANfBSmYcGuWRaSIXfMOQ8/view?pli=1
-echo "Please download sam_hq_vit_h.pth" # https://drive.google.com/file/d/1qobFYrI4eyIANfBSmYcGuWRaSIXfMOQ8/view?pli=1
+if [ -e sam_hq_vit_h.pth ]; then
+    echo "sam_hq_vit_h.pth exists."
+else
+    echo "Please download sam_hq_vit_h.pth: https://drive.google.com/file/d/1qobFYrI4eyIANfBSmYcGuWRaSIXfMOQ8/view?pli=1"
+    echo "Please download sam_hq_vit_h.pth: https://drive.google.com/file/d/1qobFYrI4eyIANfBSmYcGuWRaSIXfMOQ8/view?pli=1"
+    echo "Please download sam_hq_vit_h.pth: https://drive.google.com/file/d/1qobFYrI4eyIANfBSmYcGuWRaSIXfMOQ8/view?pli=1"
+    exit 1
+fi
 
 export CUDA_VISIBLE_DEVICES=0
 python infer.py \
@@ -81,3 +86,4 @@ python infer.py \
   --text_prompt "barrier.bicycle.bus.car.motorcycle.pedestrian.traffic cone.truck.road.sidewalk.terrain.vegetation.building." \
   --device "cuda"
 
+python change_format.py
